@@ -128,6 +128,15 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
             // Use gamepad buttons to move arm up (Y) and down (A)
+            if (gamepad2.right_bumper)
+                clawOffset += CLAW_SPEED;
+            else if (gamepad2.left_bumper)
+                clawOffset -= CLAW_SPEED;
+
+            // Move both servos to new position.  Assume servos are mirror image of each other.
+            clawOffset = Range.clip(clawOffset, -0.5, 0.5);
+            robot.scissorclaw1.setPosition(robot.MID_SERVO + clawOffset);
+            robot.scissorclaw2.setPosition(robot.MID_SERVO - clawOffset);
 
             // Send telemetry message to signify robot running;
 
