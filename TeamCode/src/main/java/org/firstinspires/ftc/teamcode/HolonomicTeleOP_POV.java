@@ -129,7 +129,7 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
 
             // Use gamepad buttons to move arm up (Y) and down (A)
             if (gamepad2.right_bumper)
-                clawOffset += CLAW_SPEED;
+                clawOffset  += CLAW_SPEED;
             else if (gamepad2.left_bumper)
                 clawOffset -= CLAW_SPEED;
 

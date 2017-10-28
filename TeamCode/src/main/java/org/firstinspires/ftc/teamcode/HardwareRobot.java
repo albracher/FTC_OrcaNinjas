@@ -56,7 +56,7 @@ public class HardwareRobot
     public DcMotor  frontLeft  = null;
     public DcMotor  backRight     = null;
     public DcMotor  backLeft   = null;
-    public DcMotor rackpinion= null;
+    public DcMotor rackpinion = null;
     public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
     public Servo scissorclaw1=  null;
@@ -86,6 +86,8 @@ public class HardwareRobot
         frontLeft   =hwMap.get(DcMotor.class, "fl_motor");
         backRight    = hwMap.get(DcMotor.class, "br_motor");
         backLeft    =  hwMap.get(DcMotor.class, "bl_motor");
+        rackpinion = hwMap.get(DcMotor.class, "platform");
+
 
         leftClaw  = hwMap.get(Servo.class, "left_hand");
         rightClaw = hwMap.get(Servo.class, "right_hand");
