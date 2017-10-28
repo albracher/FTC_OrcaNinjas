@@ -29,8 +29,11 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import android.graphics.Color;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -69,6 +72,7 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareRobot         robot   = new HardwareRobot();   // Use a Pushbot's hardware
+    //ColorSensor colorSensor;
     private ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
@@ -78,7 +82,13 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
-    static final double     squarerootof2 = 1.4;
+    static final double     squarerootof2 = 1.41;
+    static final float hsvValues[] = {0F,0F,0F};
+
+
+    // values is a reference to the hsvValues array.
+    static final float values[] = hsvValues;
+
 
     @Override
     public void runOpMode() {
@@ -110,13 +120,32 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
                 robot.backLeft.getCurrentPosition(),
                 robot.backRight.getCurrentPosition());
         telemetry.update();
+        //colorSensor.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+        //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED,  10,  -10, 10,-10,5.0);  // S1: Forward 47 Inches with 5 Sec timeout
+
+        encoderDrive(DRIVE_SPEED,  10,  -10, 10,-10,5.0);
+        /*
+        //Color.RGBToHSV((int) (colorSensor.red() * 255),
+                (int) (colorSensor.green() * 255),
+                (int) (colorSensor.blue() * 255),
+                hsvValues);
+        // if ball is blue
+        if(hsvValues[0] > 215 && hsvValues[0] < 270){
+            //hit red ball
+
+        }
+        else{
+            //hit red ball
+
+        }
+        */
+// S1: Forward 47 Inches with 5 Sec timeout
           // S2: Turn Right 12 Inches with 4 Sec timeout
           // S3: Reverse 24 Inches with 4 Sec timeout
 

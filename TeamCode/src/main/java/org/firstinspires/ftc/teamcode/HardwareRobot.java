@@ -32,6 +32,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 /**
  * This is NOT an opmode.
@@ -62,6 +63,7 @@ public class HardwareRobot
     public Servo scissorclaw1=  null;
     public Servo scissorclaw2= null;
     public static final double MID_SERVO       =  0.5 ;
+    public ColorSensor colorSensor;
 
 
 
@@ -87,6 +89,7 @@ public class HardwareRobot
         backRight    = hwMap.get(DcMotor.class, "br_motor");
         backLeft    =  hwMap.get(DcMotor.class, "bl_motor");
         rackpinion = hwMap.get(DcMotor.class, "platform");
+        //colorSensor = hwMap.colorSensor.get("color");
 
 
         leftClaw  = hwMap.get(Servo.class, "left_hand");
