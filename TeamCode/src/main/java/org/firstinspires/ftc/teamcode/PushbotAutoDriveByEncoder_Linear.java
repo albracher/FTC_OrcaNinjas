@@ -125,26 +125,22 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
+        /*
+        if(HsvValues>270 && hsvvalues <240){
+
+        }
+        else {
+
+        }
+        */
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
         encoderDrive(DRIVE_SPEED,  10,  -10, 10,-10,5.0);
-        /*
-        //Color.RGBToHSV((int) (colorSensor.red() * 255),
-                (int) (colorSensor.green() * 255),
-                (int) (colorSensor.blue() * 255),
-                hsvValues);
-        // if ball is blue
-        if(hsvValues[0] > 215 && hsvValues[0] < 270){
-            //hit red ball
 
-        }
-        else{
-            //hit red ball
 
-        }
-        */
+        //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
 // S1: Forward 47 Inches with 5 Sec timeout
           // S2: Turn Right 12 Inches with 4 Sec timeout
           // S3: Reverse 24 Inches with 4 Sec timeout
