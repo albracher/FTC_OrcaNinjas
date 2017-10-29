@@ -64,7 +64,7 @@ public class HardwareRobot
     public Servo scissorclaw2= null;
     public static final double MID_SERVO       =  0.5 ;
     public Servo jewelhitter = null;
-    public ColorSensor colorSensor;
+    //public ColorSensor colorSensor;
 
 
 
@@ -90,7 +90,7 @@ public class HardwareRobot
         backRight    = hwMap.get(DcMotor.class, "br_motor");
         backLeft    =  hwMap.get(DcMotor.class, "bl_motor");
         rackpinion = hwMap.get(DcMotor.class, "platform");
-        colorSensor = hwMap.colorSensor.get("color");
+        //colorSensor = hwMap.colorSensor.get("color");
 
 
         leftClaw  = hwMap.get(Servo.class, "left_hand");

@@ -120,11 +120,10 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
                 robot.backLeft.getCurrentPosition(),
                 robot.backRight.getCurrentPosition());
         telemetry.update();
-        robot.colorSensor.enableLed(true);
+        //robot.colorSensor.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
 
 
 
@@ -133,8 +132,8 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
         encoderDrive(DRIVE_SPEED,  10,  -10, 10,-10,5.0);
-        Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
-        if(hsvValues[0] < 270 && hsvValues[0] >240){
+        //Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
+        /*if(hsvValues[0] < 270 && hsvValues[0] >240){
             robot.jewelhitter.setPosition(0.7);
             encoderDrive(TURN_SPEED,  2,  2, 2,2,5.0);
         }
@@ -143,6 +142,7 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
             encoderDrive(TURN_SPEED,  -2,  -2, -2,-2,5.0);
 
         }
+        */
 
 
         //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
