@@ -87,10 +87,10 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
 
 
             // Combine drive and turn for blended motion.
-            FLvalue =  + ch2 - ch3 +ch1;
+            FLvalue =  + ch2 - ch3 + ch1;
             FRvalue =  - ch2 - ch3 + ch1;
-            BLvalue =  + ch2 + ch3 +ch1;
-            BRvalue =  - ch2 + ch3 +ch1;
+            BLvalue =  + ch2 + ch3 + ch1;
+            BRvalue =  - ch2 + ch3 + ch1;
             //Normalize the values so neither exceed +/- 1.0
             //max = Math.max(Math.abs(left), Math.abs(right));
             /*if (max > 1.0)
@@ -106,10 +106,10 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             robot.backLeft.setPower(BLvalue);
             robot.backRight.setPower(BRvalue);
             if(pinionup){
-                robot.rackpinion.setPower(0.05);
+                robot.rackpinion.setPower(0.055);
             }
             else if(piniondown){
-                robot.rackpinion.setPower(-0.35);
+                robot.rackpinion.setPower(-0.265);
             }
             else{
                 robot.rackpinion.setPower(0);
