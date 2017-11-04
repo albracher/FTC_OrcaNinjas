@@ -60,11 +60,9 @@ public class HardwareRobot
     public DcMotor rackpinion = null;
     public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
-    public Servo scissorclaw1=  null;
-    public Servo scissorclaw2= null;
     public static final double MID_SERVO       =  0.5 ;
     public Servo jewelhitter = null;
-    //public ColorSensor colorSensor;
+    public ColorSensor colorSensor;
 
 
 
@@ -90,18 +88,14 @@ public class HardwareRobot
         backRight    = hwMap.get(DcMotor.class, "br_motor");
         backLeft    =  hwMap.get(DcMotor.class, "bl_motor");
         rackpinion = hwMap.get(DcMotor.class, "platform");
-        //colorSensor = hwMap.colorSensor.get("color");
+        colorSensor = hwMap.colorSensor.get("color");
 
 
         leftClaw  = hwMap.get(Servo.class, "left_hand");
         rightClaw = hwMap.get(Servo.class, "right_hand");
-        scissorclaw1 =hwMap.get(Servo.class, "scissorclaw_1");
-        scissorclaw2=hwMap.get(Servo.class, "scissorclaw_2");
         jewelhitter =hwMap.get(Servo.class, "jeweler");
         leftClaw.setPosition(MID_SERVO);
         rightClaw.setPosition(MID_SERVO);
-        scissorclaw2.setPosition(MID_SERVO);
-        scissorclaw1.setPosition(MID_SERVO);
         jewelhitter.setPosition(MID_SERVO);
 
         frontLeft.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors

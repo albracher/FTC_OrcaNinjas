@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -132,26 +132,21 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
         encoderDrive(DRIVE_SPEED,  10,  -10, 10,-10,5.0);
-        //Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
-        /*if(hsvValues[0] < 270 && hsvValues[0] >240){
+        Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
+        if(hsvValues[0] < 270 && hsvValues[0] >240) {
             robot.jewelhitter.setPosition(0.7);
-            encoderDrive(TURN_SPEED,  2,  2, 2,2,5.0);
         }
         else {
-            robot.jewelhitter.setPosition(0.7);
-            encoderDrive(TURN_SPEED,  -2,  -2, -2,-2,5.0);
+            robot.jewelhitter.setPosition(-0.7);
 
         }
-        */
 
 
-        //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
-// S1: Forward 47 Inches with 5 Sec timeout
-          // S2: Turn Right 12 Inches with 4 Sec timeout
-          // S3: Reverse 24 Inches with 4 Sec timeout
 
-        robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
-        robot.rightClaw.setPosition(0.0);
+
+
+        //robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
+        //robot.rightClaw.setPosition(0.0);
         sleep(1000);     // pause for servos to move
 
         telemetry.addData("Path", "Complete");

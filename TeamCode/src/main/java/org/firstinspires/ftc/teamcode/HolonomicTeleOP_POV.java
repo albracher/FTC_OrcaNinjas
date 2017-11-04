@@ -126,7 +126,7 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             clawOffset = Range.clip(clawOffset, -0.5, 0.5);
             robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
             robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
-            
+
 
             // Use gamepad buttons to move arm up (Y) and down (A)
             /*if (gamepad1.right_bumper)
