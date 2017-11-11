@@ -66,9 +66,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Encoder", group="Pushbot")
+@Autonomous(name="bluealliancecode", group="Pushbot")
 
-public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
+public class bluealliancecode extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareRobot         robot   = new HardwareRobot();   // Use a Pushbot's hardware
@@ -131,16 +131,16 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
-        encoderDrive(DRIVE_SPEED,  2,  -2, 2,-2,5.0);
+        robot.jewelhitter.setPosition(0.5);
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
-        if(hsvValues[0] < 270 && hsvValues[0] >240) {
-            robot.jewelhitter.setPosition(0.7);
+        if(hsvValues[0] < 240 && hsvValues[0] >180) {
+            encoderDrive(0.5,-6,-6,6,6,5.0);
         }
         else {
-            robot.jewelhitter.setPosition(-0.7);
+            encoderDrive(0.5,6,6,-6,-6,5.0);
 
         }
-        encoderDrive(DRIVE_SPEED,  -7,  -7, 7,7,5.0);
+
 
 
 

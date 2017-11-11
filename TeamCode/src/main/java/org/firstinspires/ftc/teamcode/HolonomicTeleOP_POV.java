@@ -70,8 +70,8 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             ch1=gamepad1.right_stick_x ;
             ch3=gamepad1.left_stick_x ;
             ch2=gamepad1.left_stick_y ;
-            pinionup = gamepad1.dpad_up;
-            piniondown = gamepad1.dpad_down;
+            pinionup = gamepad2.dpad_up;
+            piniondown = gamepad2.dpad_down;
 
             telemetry.addData("say" , pinionup);
             telemetry.update();
@@ -109,7 +109,7 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
                 robot.rackpinion.setPower(0.055);
             }
             else if(piniondown){
-                robot.rackpinion.setPower(-0.265);
+                robot.rackpinion.setPower(-0.265 );
             }
             else{
                 robot.rackpinion.setPower(0);
@@ -117,9 +117,9 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
 
 
             // Use gamepad left & right Bumpers to open and close the claw
-            if (gamepad1.right_bumper)
+            if (gamepad2.right_bumper)
                 clawOffset += CLAW_SPEED;
-            else if (gamepad1.left_bumper)
+            else if (gamepad2.left_bumper)
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
@@ -145,7 +145,7 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
 
 
             // Pace this loop so jaw action is reasonable speed.
-            sleep(50);
+            sleep(100);
         }
     }
 }
