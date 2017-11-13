@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -66,9 +66,9 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Encoder", group="Pushbot")
+@Autonomous(name="redalliancecode", group="Pushbot")
 
-public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
+public class redalliancecode extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareRobot         robot   = new HardwareRobot();   // Use a Pushbot's hardware
@@ -120,37 +120,38 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
                 robot.backLeft.getCurrentPosition(),
                 robot.backRight.getCurrentPosition());
         telemetry.update();
-        //colorSensor.enableLed(true);
+        //robot.colorSensor.enableLed(true);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
+
+
+
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
-        encoderDrive(DRIVE_SPEED,  10,  -10, 10,-10,5.0);
-        /*
-        //Color.RGBToHSV((int) (colorSensor.red() * 255),
-                (int) (colorSensor.green() * 255),
-                (int) (colorSensor.blue() * 255),
-                hsvValues);
-        // if ball is blue
-        if(hsvValues[0] > 215 && hsvValues[0] < 270){
-            //hit red ball
+
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
 
         }
-        else{
-            //hit red ball
+        Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
+        if(hsvValues[0] < 240 && hsvValues[0] >180) {
+            encoderDrive(0.5,6,6,-6,-6,5.0);
+        }
+        else {
+            encoderDrive(0.5,-6,-6,6,6,5.0);
 
         }
-        */
-// S1: Forward 47 Inches with 5 Sec timeout
-          // S2: Turn Right 12 Inches with 4 Sec timeout
-          // S3: Reverse 24 Inches with 4 Sec timeout
 
-        robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
-        robot.rightClaw.setPosition(0.0);
+
+
+
+
+
+        //robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
+        //robot.rightClaw.setPosition(0.0);
         sleep(1000);     // pause for servos to move
 
         telemetry.addData("Path", "Complete");
