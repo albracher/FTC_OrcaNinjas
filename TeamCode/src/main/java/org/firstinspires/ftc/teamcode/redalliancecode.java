@@ -141,7 +141,7 @@ public class redalliancecode extends LinearOpMode {
             encoderDrive(0.5,6,6,-6,-6,5.0);
         }
         else {
-            encoderDrive(0.5,-6,-6,6,6,5.0);
+            encoderDrive(0.5,6,6,6,6,5.0);
 
         }
 
