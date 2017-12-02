@@ -58,8 +58,10 @@ public class HardwareRobot
     public DcMotor  backRight     = null;
     public DcMotor  backLeft   = null;
     public DcMotor rackpinion = null;
-    public Servo    leftClaw    = null;
-    public Servo    rightClaw   = null;
+    public Servo    upleftClaw    = null;
+    public Servo    uprightClaw   = null;
+    public Servo bottomleftClaw=null;
+    public Servo bottomrightClaw=null;
     public static final double MID_SERVO       =  0.5 ;
     public Servo jewelhitter = null;
     public ColorSensor colorSensor;
@@ -91,8 +93,10 @@ public class HardwareRobot
         colorSensor = hwMap.colorSensor.get("color");
 
 
-        leftClaw  = hwMap.get(Servo.class, "left_hand");
-        rightClaw = hwMap.get(Servo.class, "right_hand");
+        upleftClaw  = hwMap.get(Servo.class, "upleft_hand");
+        uprightClaw = hwMap.get(Servo.class, "upright_hand");
+        bottomleftClaw = hwMap.get(Servo.class, "botleft_hand");
+        bottomrightClaw=hwMap.get(Servo.class, "botright_hand");
         jewelhitter =hwMap.get(Servo.class, "jeweler");
 
 
