@@ -106,11 +106,11 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             robot.backLeft.setPower(BLvalue);
             robot.backRight.setPower(BRvalue);
             if(pinionup){
-<<<<<<< HEAD
+
                 robot.rackpinion.setPower(0.02);
-=======
+
                 robot.rackpinion.setPower(0.055);
->>>>>>> e87397e5cbe76dd03661c3f5ca8d2c7968e4d5f2
+
             }
             else if(piniondown){
                 robot.rackpinion.setPower(-0.265 );
