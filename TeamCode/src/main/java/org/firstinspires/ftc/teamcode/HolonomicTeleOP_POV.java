@@ -33,7 +33,7 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
     // could also use HardwarePushbotMatrix class.
     double          clawOffset      = 0;                       // Servo mid position
     final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
-
+double counter;
     @Override
     public void runOpMode() {
         double ch1;
@@ -70,8 +70,8 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             ch1=gamepad1.right_stick_x ;
             ch3=gamepad1.left_stick_x ;
             ch2=gamepad1.left_stick_y ;
-            pinionup = gamepad2.dpad_up;
-            piniondown = gamepad2.dpad_down;
+            pinionup = gamepad1.dpad_up;
+            piniondown = gamepad1.dpad_down;
 
             telemetry.addData("say" , pinionup);
             telemetry.update();
@@ -105,19 +105,14 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             robot.frontLeft.setPower(FLvalue);
             robot.backLeft.setPower(BLvalue);
             robot.backRight.setPower(BRvalue);
-            if(pinionup){
-
-<<<<<<< HEAD
-
-=======
-                robot.rackpinion.setPower(0.02);
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
-
-                robot.rackpinion.setPower(0.055);
+            if(piniondown){
+                robot.rackpinion.setPower(0.7);
+                counter++;
 
             }
-            else if(piniondown){
-                robot.rackpinion.setPower(-0.265 );
+            else if(pinionup){
+                robot.rackpinion.setPower(-0.7);
+                counter--;
             }
             else{
                 robot.rackpinion.setPower(0);
@@ -125,16 +120,17 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
 
 
             // Use gamepad left & right Bumpers to open and close the claw
-            if (gamepad2.right_bumper)
+            if (gamepad1.right_bumper)
                 clawOffset += CLAW_SPEED;
-            else if (gamepad2.left_bumper)
+            else if (gamepad1 .left_bumper)
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
             clawOffset = Range.clip(clawOffset, -0.5, 0.5);
-            robot.upleftClaw.setPosition(robot.MID_SERVO + clawOffset);
-            robot.uprightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
+            robot.upleftClaw.setPosition(robot.MID_SERVO + clawOffset);
+
+            robot.uprightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
 
 
@@ -150,8 +146,8 @@ public class HolonomicTeleOP_POV extends LinearOpMode {
             robot.scissorclaw2.setPosition(robot.MID_SERVO - clawOffset);
             */
 
-            // Send telemetry message to signify robot running;
-
+            telemetry.addData("Say", counter);
+            telemetry.update();
 
 
             // Pace this loop so jaw action is reasonable speed.

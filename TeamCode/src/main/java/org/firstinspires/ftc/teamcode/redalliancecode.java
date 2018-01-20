@@ -78,7 +78,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="redalliancecode", group="Pushbot")
+@Autonomous(name="bluealliancecode", group="Pushbot")
 
 public class redalliancecode extends LinearOpMode {
     VuforiaLocalizer vuforia;
@@ -104,8 +104,8 @@ public class redalliancecode extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
         parameters.vuforiaLicenseKey = "AWURDUL/////AAAAGRV3tgkIxUKJg8ACr6QTilZlZ1VVATMWISVYxdiTMTcFnwP0Dp8Y8L8zBqWPzaq3E6+V/lOF9bpkuQlzovfoK4UvwqKBAJMoYhVOO2hy9eiWG86YiGqEht3AyASbYaWMPLU/ckM21is0kw/GuUPtU5i6Xer7/wjdlcctLXl5I+iDFjA5NJR/eCGRmLPF5GvE73PTisGqrJLqLHXseIehtHdkieLZsRviD3uEnTQEekSHDT1VHFYvYNlFHR1V9RLWCwwe0Pf3Kdx3helXjacUUK27SMBH1RrQOA+FhT/5EfO1PFFDsrdaRGLadzY4GuJ8c5yDbrkcg56P1//tkzuDetKgYShwCM70TJd+LGYr4hUF";
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
@@ -141,8 +141,10 @@ public class redalliancecode extends LinearOpMode {
         telemetry.update();
         //robot.colorSensor.enableLed(true);
 
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+        relicTrackables.activate();
 
 
 
@@ -152,32 +154,51 @@ public class redalliancecode extends LinearOpMode {
 
 
         runtime.reset();
+        //robot.bottomleftClaw.setPosition(1.0);
+        //robot.bottomrightClaw.setPosition(0);
+        //robot.upleftClaw.setPosition(0);
+        //robot.uprightClaw.setPosition(1.0);
         robot.jewelhitter.setPosition(1.0);
         while (opModeIsActive() && (runtime.seconds() < 3.0)) {
 
         }
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
         if(hsvValues[0] < 240 && hsvValues[0] >180) {
-            encoderDrive(0.5,6,6,-6,-6,5.0);
+            encoderDrive(0.5,15,15,-15,-15,5.0);
+            robot.jewelhitter.setPosition(0);
         }
         else {
-<<<<<<< HEAD
-            encoderDrive(0.5,-2,-2,-2,-2,5.0);
+
             encoderDrive(0.5,2,2,2,2,5.0);
-=======
-            encoderDrive(0.5,6,6,6,6,5.0);
+            encoderDrive(0.5,-2,-2,-2,-2,5.0);
+            robot.jewelhitter.setPosition(0);
+            encoderDrive(0.5,15,15,-15,-15,5.0);
+
+        }
+
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
 
         }
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-        if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
-
-
+        if (vuMark == RelicRecoveryVuMark.RIGHT) {
+            encoderDrive(0.5,8,8,8,8,5.0);
+            encoderDrive(0.5,1,1,-1,-1,5.0);
+            telemetry.addData("VuMark", "%s visible", vuMark);
         }
-        else {
+        else if(vuMark == RelicRecoveryVuMark.LEFT){
+            encoderDrive(0.5,8,8,8,8,5.0);
+            encoderDrive(0.5,3,3,-3,-3,5.0);
+            telemetry.addData("VuMark", "%s visible", vuMark);
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER){
+            encoderDrive(0.5,8,8,8,8,5.0);
+            encoderDrive(0.5,2,2,-2,-2,5.0);
+            telemetry.addData("VuMark", "%s visible", vuMark);
+        }
+        else if(vuMark == RelicRecoveryVuMark.UNKNOWN) {
             telemetry.addData("VuMark", "not visible");
         }
-        robot.jewelhitter.setPosition(0);
+
 
 
 

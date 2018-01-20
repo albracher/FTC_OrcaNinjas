@@ -29,14 +29,17 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.Color;
+
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-<<<<<<< HEAD
-=======
+import com.vuforia.HINT;
+import com.vuforia.Vuforia;
+
+import android.graphics.Color;
+
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.MatrixF;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -49,7 +52,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
+
 
 
 /**
@@ -79,15 +82,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="bluealliancecode", group="Pushbot")
+@Autonomous(name="redalliancecode", group="Pushbot")
 
 public class bluealliancecode extends LinearOpMode {
 
     /* Declare OpMode members. */
-<<<<<<< HEAD
-=======
     VuforiaLocalizer vuforia;
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
+
     HardwareRobot         robot   = new HardwareRobot();   // Use a Pushbot's hardware
     //ColorSensor colorSensor;
     private ElapsedTime     runtime = new ElapsedTime();
@@ -109,16 +110,16 @@ public class bluealliancecode extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-<<<<<<< HEAD
-=======
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+
+
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
         parameters.vuforiaLicenseKey = "AWURDUL/////AAAAGRV3tgkIxUKJg8ACr6QTilZlZ1VVATMWISVYxdiTMTcFnwP0Dp8Y8L8zBqWPzaq3E6+V/lOF9bpkuQlzovfoK4UvwqKBAJMoYhVOO2hy9eiWG86YiGqEht3AyASbYaWMPLU/ckM21is0kw/GuUPtU5i6Xer7/wjdlcctLXl5I+iDFjA5NJR/eCGRmLPF5GvE73PTisGqrJLqLHXseIehtHdkieLZsRviD3uEnTQEekSHDT1VHFYvYNlFHR1V9RLWCwwe0Pf3Kdx3helXjacUUK27SMBH1RrQOA+FhT/5EfO1PFFDsrdaRGLadzY4GuJ8c5yDbrkcg56P1//tkzuDetKgYShwCM70TJd+LGYr4hUF";
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
+
 
         /*
          * Initialize the drive system variables.
@@ -148,10 +149,11 @@ public class bluealliancecode extends LinearOpMode {
                 robot.backRight.getCurrentPosition());
         telemetry.update();
         //robot.colorSensor.enableLed(true);
+        relicTrackables.activate();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
+        relicTrackables.activate();
 
 
 
@@ -160,38 +162,51 @@ public class bluealliancecode extends LinearOpMode {
 
 
         runtime.reset();
-<<<<<<< HEAD
         robot.jewelhitter.setPosition(1.0);
-=======
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+
+
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            robot.rackpinion.setPower(0.3);
 
         }
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
         if(hsvValues[0] < 240 && hsvValues[0] >180) {
-<<<<<<< HEAD
-            encoderDrive(0.5,-2,-2,-2,-2,5.0);
-            encoderDrive(0.5,2,2,2,2,5.0);
-        }
-        else {
-            encoderDrive(0.5,6,6,-6,-6,5.0);
+
+            encoderDrive(0.5,-15,-15,15,15,5.0);
 
         }
-        robot.jewelhitter.setPosition(0);
-=======
-            encoderDrive(0.5,-6,-6,6,6,5.0);
-        }
         else {
-            encoderDrive(0.5,-6,-6,-6,-6,5.0);
+            encoderDrive(0.5,-2,-2,-2,-2,5.0);
+            encoderDrive(0.5,2,2,2,2,5.0);
+            robot.jewelhitter.setPosition(0);
+            encoderDrive(0.5,-15,-15,15,15,5.0);
+        }
+        runtime.reset();
+
+
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
 
         }
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-        if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
+        if (vuMark == RelicRecoveryVuMark.RIGHT) {
+            encoderDrive(0.5,8,8,8,8,5.0);
+            encoderDrive(0.5,-1,-1,1,1,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
-        else
-            {telemetry.addData("VuMark", "not visible");}
->>>>>>> 51269e259d373dd3e7240c9c251427aa248fc388
+        else if(vuMark == RelicRecoveryVuMark.LEFT){
+            encoderDrive(0.5,8,8,8,8,5.0);
+            encoderDrive(0.5,-3,-3,3,3,5.0);
+            telemetry.addData("VuMark", "%s visible", vuMark);
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER){
+            encoderDrive(0.5,8,8,8,8,5.0);
+            encoderDrive(0.5,-2,-2,2,2,5.0);
+            telemetry.addData("VuMark", "%s visible", vuMark);
+        }
+        else if(vuMark == RelicRecoveryVuMark.UNKNOWN) {
+                telemetry.addData("VuMark", "not visible");
+            }
+
 
 
 
@@ -200,7 +215,7 @@ public class bluealliancecode extends LinearOpMode {
 
         //robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
         //robot.rightClaw.setPosition(0.0);
-        sleep(1000);     // pause for servos to move
+        sleep(1000);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

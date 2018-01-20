@@ -28,6 +28,7 @@ package org.firstinspires.ftc.teamcode;
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -95,8 +96,6 @@ public class HardwareRobot
 
         upleftClaw  = hwMap.get(Servo.class, "upleft_hand");
         uprightClaw = hwMap.get(Servo.class, "upright_hand");
-        bottomleftClaw = hwMap.get(Servo.class, "botleft_hand");
-        bottomrightClaw=hwMap.get(Servo.class, "botright_hand");
         jewelhitter =hwMap.get(Servo.class, "jeweler");
 
 
