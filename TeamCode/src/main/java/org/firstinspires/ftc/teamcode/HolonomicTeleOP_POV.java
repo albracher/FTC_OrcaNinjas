@@ -106,12 +106,12 @@ double counter;
             robot.backLeft.setPower(BLvalue);
             robot.backRight.setPower(BRvalue);
             if(piniondown){
-                robot.rackpinion.setPower(0.7);
+                robot.rackpinion.setPower(1.0);
                 counter++;
 
             }
             else if(pinionup){
-                robot.rackpinion.setPower(-0.7);
+                robot.rackpinion.setPower(-1.0);
                 counter--;
             }
             else{
@@ -151,7 +151,7 @@ double counter;
 
 
             // Pace this loop so jaw action is reasonable speed.
-            sleep(100);
+            sleep(50);
         }
     }
 }

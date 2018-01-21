@@ -172,7 +172,7 @@ public class redalliancecode extends LinearOpMode {
             encoderDrive(0.5,2,2,2,2,5.0);
             encoderDrive(0.5,-2,-2,-2,-2,5.0);
             robot.jewelhitter.setPosition(0);
-            encoderDrive(0.5,15,15,-15,-15,5.0);
+            encoderDrive(0.5,10,10,-10,-10,5.0);
 
         }
 
@@ -181,16 +181,19 @@ public class redalliancecode extends LinearOpMode {
         }
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
         if (vuMark == RelicRecoveryVuMark.RIGHT) {
+            encoderDrive(0.5,5,5,-5,-5,5.0);
             encoderDrive(0.5,8,8,8,8,5.0);
             encoderDrive(0.5,1,1,-1,-1,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if(vuMark == RelicRecoveryVuMark.LEFT){
+            encoderDrive(0.5,5,5,-5,-5,5.0);
             encoderDrive(0.5,8,8,8,8,5.0);
             encoderDrive(0.5,3,3,-3,-3,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
+            encoderDrive(0.5,5,5,-5,-5,5.0);
             encoderDrive(0.5,8,8,8,8,5.0);
             encoderDrive(0.5,2,2,-2,-2,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);

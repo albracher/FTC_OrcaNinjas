@@ -172,40 +172,44 @@ public class bluealliancecode extends LinearOpMode {
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
         if(hsvValues[0] < 240 && hsvValues[0] >180) {
 
-            encoderDrive(0.5,-15,-15,15,15,5.0);
+            encoderDrive(0.5,-10,-10,10,10,5.0);
 
         }
         else {
             encoderDrive(0.5,-2,-2,-2,-2,5.0);
             encoderDrive(0.5,2,2,2,2,5.0);
             robot.jewelhitter.setPosition(0);
-            encoderDrive(0.5,-15,-15,15,15,5.0);
+            encoderDrive(0.5,-10,-10,10,10,5.0);
         }
         runtime.reset();
-
+        encoderDrive(0.5,-6,-6,-6,-6,5.0);
 
         while (opModeIsActive() && (runtime.seconds() < 3.0)) {
 
         }
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        encoderDrive(0.5,6,6,6,6,5.0);
         if (vuMark == RelicRecoveryVuMark.RIGHT) {
+            encoderDrive(0.5,-5,-5,5,5,5.0);
             encoderDrive(0.5,8,8,8,8,5.0);
-            encoderDrive(0.5,-1,-1,1,1,5.0);
+            encoderDrive(0.5,-6,-6,6,6,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if(vuMark == RelicRecoveryVuMark.LEFT){
+            encoderDrive(0.5,-5,-5,5,5,5.0);
             encoderDrive(0.5,8,8,8,8,5.0);
-            encoderDrive(0.5,-3,-3,3,3,5.0);
+            encoderDrive(0.5,-14,-14,14,14,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
+            encoderDrive(0.5,-5,-5,5,5,5.0);
             encoderDrive(0.5,8,8,8,8,5.0);
-            encoderDrive(0.5,-2,-2,2,2,5.0);
+            encoderDrive(0.5,-10,-10,10,10,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if(vuMark == RelicRecoveryVuMark.UNKNOWN) {
-                telemetry.addData("VuMark", "not visible");
-            }
+            telemetry.addData("VuMark", "not visible");
+        }
 
 
 
