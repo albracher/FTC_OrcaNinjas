@@ -157,6 +157,7 @@ public class bluealliancecode extends LinearOpMode {
 
 
 
+
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
@@ -165,46 +166,49 @@ public class bluealliancecode extends LinearOpMode {
         robot.jewelhitter.setPosition(1.0);
 
 
-        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
-            robot.rackpinion.setPower(0.3);
 
-        }
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
         if(hsvValues[0] < 240 && hsvValues[0] >180) {
 
-            encoderDrive(0.5,-10,-10,10,10,5.0);
+            encoderDrive(0.5,-17,-17,17,17,5.0);
+            robot.jewelhitter.setPosition(0);
 
         }
         else {
             encoderDrive(0.5,-2,-2,-2,-2,5.0);
             encoderDrive(0.5,2,2,2,2,5.0);
             robot.jewelhitter.setPosition(0);
-            encoderDrive(0.5,-10,-10,10,10,5.0);
+            encoderDrive(0.5,-17,-17,17,17,5.0);
         }
-        runtime.reset();
-        encoderDrive(0.5,-6,-6,-6,-6,5.0);
 
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+
+        encoderDrive(0.5,-12.6,-12.6,-12.6,-12.6 ,5.0);
+        runtime.reset();
+
+        while (opModeIsActive() && (runtime.seconds() < 7.0)) {
 
         }
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-        encoderDrive(0.5,6,6,6,6,5.0);
+        encoderDrive(0.5,-12.6,-12.6,-12.6,-12.6,5.0);
         if (vuMark == RelicRecoveryVuMark.RIGHT) {
-            encoderDrive(0.5,-5,-5,5,5,5.0);
-            encoderDrive(0.5,8,8,8,8,5.0);
-            encoderDrive(0.5,-6,-6,6,6,5.0);
+
+
+            encoderDrive(0.5,6,6,-6,-6,5.0);
+            encoderDrive(0.5,-6,6,-6,6,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if(vuMark == RelicRecoveryVuMark.LEFT){
-            encoderDrive(0.5,-5,-5,5,5,5.0);
-            encoderDrive(0.5,8,8,8,8,5.0);
-            encoderDrive(0.5,-14,-14,14,14,5.0);
+
+
+            encoderDrive(0.5,14,14,-14,-14,5.0);
+            encoderDrive(0.5,-6,6,-6,6,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER){
-            encoderDrive(0.5,-5,-5,5,5,5.0);
-            encoderDrive(0.5,8,8,8,8,5.0);
-            encoderDrive(0.5,-10,-10,10,10,5.0);
+
+
+            encoderDrive(0.5,10,10,-10,-10,5.0);
+            encoderDrive(0.5,-6,6,-6,6,5.0);
             telemetry.addData("VuMark", "%s visible", vuMark);
         }
         else if(vuMark == RelicRecoveryVuMark.UNKNOWN) {
